@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="margin-bottom:25px;">Создание записи</h2>
+
+<form method="POST" class="form-block">
+    <div class="form-group">
+        <select name="doctor_id" required>
+            <option value="">Выберите врача</option>
+
+            {% for doctor in doctors %}
+                <option value="{{ doctor[0] }}">{{ doctor[1] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <select name="patient_id" required>
+            <option value="">Выберите пациента</option>
+
+            {% for patient in patients %}
+                <option value="{{ patient[0] }}">{{ patient[1] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <input type="date" name="appointment_date" required>
+    </div>
+
+    <div class="form-group">
+        <input type="time" name="appointment_time" required>
+    </div>
+
+    <div class="form-group">
+        <select name="status" required>
+            <option value="Запланирована">Запланирована</option>
+            <option value="Завершена">Завершена</option>
+            <option value="Отменена">Отменена</option>
+        </select>
+    </div>
+
+    <button type="submit" class="save-btn">
+        Сохранить
+    </button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="page-header">
+    <h2>Врачи</h2>
+
+    <a href="/add-doctor" class="add-btn">
+        Добавить врача
+    </a>
+</div>
+
+<form method="GET" class="search-block">
+    <input type="text"
+           name="search"
+           placeholder="Поиск по ФИО или специализации"
+           value="{{ search }}">
+
+    <button type="submit">
+        Найти
+    </button>
+</form>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>ФИО</th>
+        <th>Специализация</th>
+        <th>Телефон</th>
+        <th>Email</th>
+        <th>Действия</th>
+    </tr>
+
+    {% for doctor in doctors %}
+    <tr>
+        <td>{{ doctor[0] }}</td>
+        <td>{{ doctor[1] }}</td>
+        <td>{{ doctor[2] }}</td>
+        <td>{{ doctor[3] }}</td>
+        <td>{{ doctor[4] }}</td>
+        <td style="display:flex; gap:15px;">
+
+            <a href="/edit-doctor/{{ doctor[0] }}"
+                style="
+                color:#4f46e5;
+                text-decoration:none;
+                font-weight:600;
+                ">
+                Изменить
+            </a>
+
+            <a href="/delete-doctor/{{ doctor[0] }}"
+                class="delete-btn"
+                onclick="return confirm('Удалить врача?')">
+                Удалить
+            </a>
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

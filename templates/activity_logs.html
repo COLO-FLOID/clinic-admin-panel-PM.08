@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="margin-bottom:25px;">
+    Журнал действий
+</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Пользователь</th>
+        <th>Действие</th>
+        <th>Дата</th>
+    </tr>
+
+    {% for log in logs %}
+    <tr>
+        <td>{{ log[0] }}</td>
+        <td>{{ log[1] }}</td>
+        <td>{{ log[2] }}</td>
+        <td>{{ log[3] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

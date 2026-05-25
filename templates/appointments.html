@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="page-header">
+    <h2>Записи на приём</h2>
+
+    <form method="GET" class="search-block">
+        <input type="text"
+               name="search"
+               placeholder="Поиск по врачу, пациенту, дате или статусу"
+               value="{{ search }}">
+
+        <button type="submit">
+            Найти
+        </button>
+    </form>
+
+    <a href="/add-appointment" class="add-btn">
+        Создать запись
+    </a>
+</div>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Врач</th>
+        <th>Пациент</th>
+        <th>Дата</th>
+        <th>Время</th>
+        <th>Статус</th>
+        <th>Действия</th>
+    </tr>
+
+    {% for appointment in appointments %}
+    <tr>
+        <td>{{ appointment[0] }}</td>
+        <td>{{ appointment[1] }}</td>
+        <td>{{ appointment[2] }}</td>
+        <td>{{ appointment[3] }}</td>
+        <td>{{ appointment[4] }}</td>
+        <td>
+            {% if appointment[5] == 'Запланирована' %}
+
+                <span class="status planned">
+                    {{ appointment[5] }}
+                </span>
+            
+            {% elif appointment[5] == 'Завершена' %}
+            
+                <span class="status completed">
+                    {{ appointment[5] }}
+                </span>
+            
+            {% else %}
+            
+                <span class="status canceled">
+                    {{ appointment[5] }}
+                </span>
+            
+            {% endif %}
+        </td>
+        <td style="display:flex; gap:15px;">
+            <a href="/edit-appointment/{{ appointment[0] }}"
+               style="color:#4f46e5; text-decoration:none; font-weight:600;">
+                Изменить
+            </a>
+        
+            <a href="/delete-appointment/{{ appointment[0] }}"
+               class="delete-btn"
+               onclick="return confirm('Удалить запись?')">
+                Удалить
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

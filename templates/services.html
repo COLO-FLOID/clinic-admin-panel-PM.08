@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="page-header">
+    <h2>Услуги</h2>
+
+    <form method="GET" class="search-block">
+        <input type="text"
+           name="search"
+           placeholder="Поиск по названию или описанию"
+           value="{{ search }}">
+
+        <button type="submit">
+            Найти
+        </button>
+    </form>
+
+    <a href="/add-service" class="add-btn">
+        Добавить услугу
+    </a>
+</div>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Цена</th>
+        <th>Описание</th>
+        <th>Действия</th>
+    </tr>
+
+    {% for service in services %}
+    <tr>
+        <td>{{ service[0] }}</td>
+        <td>{{ service[1] }}</td>
+        <td>{{ service[2] }} ₽</td>
+        <td>{{ service[3] }}</td>
+        <td style="display:flex; gap:15px;">
+            <a href="/edit-service/{{ service[0] }}"
+               style="color:#4f46e5; text-decoration:none; font-weight:600;">
+                Изменить
+            </a>
+        
+            <a href="/delete-service/{{ service[0] }}"
+               class="delete-btn"
+               onclick="return confirm('Удалить услугу?')">
+                Удалить
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

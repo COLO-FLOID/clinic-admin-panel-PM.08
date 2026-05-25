@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 style="margin-bottom:25px;">
+    Редактирование пациента
+</h2>
+
+<form method="POST" class="form-block">
+
+    <div class="form-group">
+        <input type="text"
+               name="full_name"
+               value="{{ patient[1] }}"
+               required>
+    </div>
+
+    <div class="form-group">
+        <input type="date"
+               name="birth_date"
+               value="{{ patient[2] }}"
+               required>
+    </div>
+
+    <div class="form-group">
+        <input type="text"
+               name="phone"
+               value="{{ patient[3] }}"
+               required>
+    </div>
+
+    <div class="form-group">
+        <textarea name="address">{{ patient[4] }}</textarea>
+    </div>
+
+    <button type="submit" class="save-btn">
+        Сохранить изменения
+    </button>
+
+</form>
+
+{% endblock %}

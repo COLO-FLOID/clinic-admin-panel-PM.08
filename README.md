@@ -46,6 +46,7 @@
 
 ## Структура проекта
 
+```text
 clinic-admin/
 ├── database/
 │   └── clinic.sql
@@ -79,6 +80,7 @@ clinic-admin/
 ├── app.py
 ├── config.py
 └── README.md
+```
 
 ---
 
